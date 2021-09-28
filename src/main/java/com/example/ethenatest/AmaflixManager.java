@@ -48,8 +48,12 @@ public class AmaflixManager {
                                 if(record.get(services).equals(1)) {
 
                                     int csvYear = Integer.parseInt("Year"); // limits
-                                    if(inputYearLower != null && inputYearLower > csvYear || inputYearUpper != null && inputYearUpper < csvYear )
+                                    if(inputYearLower != null && inputYearLower > csvYear || inputYearUpper != null && inputYearUpper < csvYear ) {
                                         result.add(record);
+                                    }
+
+
+
                                 }
                             }
 
