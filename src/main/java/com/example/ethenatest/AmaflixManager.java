@@ -32,8 +32,14 @@ public class AmaflixManager {
             JSONObject input= getInput();
             ArrayList<String> inputAlreadySeen = new ArrayList<>();
             ArrayList<String> inputServiceAccess = new ArrayList<>();
-            Integer inputYearLower = (Integer) input.get("year_lower_limit");
-            Integer inputYearUpper = (Integer) input.get("year_upper_limit");
+            Integer inputYearLower = 0;
+            Integer inputYearUpper = 0;
+            try {
+                 inputYearLower = (Integer) input.get("year_lower_limit");
+                 inputYearUpper = (Integer) input.get("year_upper_limit");
+            }catch (Exception e) {
+                    // donothing
+            }
 
             while ((record = mapReader.read(header)) != null) {
 
@@ -49,11 +55,10 @@ public class AmaflixManager {
 
                                     int csvYear = Integer.parseInt("Year"); // limits
                                     if(inputYearLower != null && inputYearLower > csvYear || inputYearUpper != null && inputYearUpper < csvYear ) {
+
+                                        String rottenTomatoes = record.get("Rotten Tomatoes").substring(0, record.get("Rotten Tomatoes").length() - 1);
                                         result.add(record);
                                     }
-
-
-
                                 }
                             }
 
